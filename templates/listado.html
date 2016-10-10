@@ -1,0 +1,48 @@
+{% extends "layout.html" %}
+{% block body %}
+<div class="panel panel-default">
+    <!-- Default panel contents -->
+    <div class="panel-heading panel-with-content">
+        <div class="col-lg-8">Listado de trabajos</div>
+        <div class="col-lg-4 text-right">
+            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#crearTrabajo">
+                Agregar trabajo
+            </button>
+        </div>
+    </div>
+    <table class="table tabla_listado">
+        <thead>
+            {% for key in trabajos[0].get_formated_keys() %}
+            <th>{{ key.replace('_', ' ') }}</th>
+            {% endfor %}
+        </thead>
+        <tbody>
+            {% for trabajo in trabajos %}
+                <tr>
+                {% for _ , value in trabajo.__dict__.iteritems() %}
+                    <td>{{value}}</td>
+                {% endfor %}
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="crearTrabajo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Crear Trabajo</h4>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
