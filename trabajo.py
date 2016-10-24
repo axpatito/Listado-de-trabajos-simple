@@ -1,6 +1,8 @@
 import json
 from orm import Model
-
+import consts
+import collections
+import copy
 
 class Trabajo(Model):
 
@@ -21,8 +23,12 @@ class Trabajo(Model):
         self.fecha = kwargs['fecha']
         self.hora = kwargs['hora']
 
-    def export_json(self):
-        return json.dumps(self.__dict__)
+    def get_ordered_dict(self):
+        return collections.OrderedDict(sorted(self.get_filetered_dict().items()))
 
-    def get_formated_keys(self):
-        return self.__dict__.keys()
+    def get_ordered_keys(self):
+        return sorted(self.get_ordered_dict().keys())
+
+    def get_filetered_dict(self):
+        return {key: val for key, val in self.__dict__.iteritems()
+                if key != consts.ID and key != consts.ID_ALUMNO}

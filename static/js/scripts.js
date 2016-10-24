@@ -36,8 +36,24 @@ $( document ).ready(function() {
     }
 
     function agregar_a_tabla(trabajo){
+        var keys = [], k, i;
+        var sorted = {};
+
+        for (k in trabajo) {
+            if (trabajo.hasOwnProperty(k)) {
+                keys.push(k);
+            }
+        }
+
+        keys.sort();
+
+        for (i = 0; i < keys.length; i++) {
+            k = keys[i];
+            sorted[k] = trabajo[k]
+        }
+
         var row = "";
-        $.each(trabajo, function (key, value) {
+        $.each(sorted, function (key, value) {
             row += "<td>"+value+"</td>"
         });
         var $tr = $('<tr>').append( row );

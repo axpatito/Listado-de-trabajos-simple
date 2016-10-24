@@ -15,7 +15,7 @@ Trabajo.db = db
 @app.route('/')
 def index():
     trabajos = list(Trabajo.manager(db).all())
-    return render_template('listado.html', trabajos=trabajos, cabeceras=trabajos[0].__dict__.keys())
+    return render_template('listado.html', trabajos=trabajos)
 
 
 @app.route('/api/crear_trabajo', methods=['POST'])

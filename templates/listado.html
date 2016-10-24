@@ -12,14 +12,14 @@
     </div>
     <table class="table tabla_listado">
         <thead>
-            {% for key in trabajos[0].get_formated_keys() %}
+            {% for key in trabajos[0].get_ordered_keys() %}
             <th>{{ key.replace('_', ' ') }}</th>
             {% endfor %}
         </thead>
         <tbody>
             {% for trabajo in trabajos %}
                 <tr>
-                {% for _ , value in trabajo.__dict__.iteritems() %}
+                {% for _ , value in trabajo.get_ordered_dict().iteritems() %}
                     <td>{{value}}</td>
                 {% endfor %}
                 </tr>
