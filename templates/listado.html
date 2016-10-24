@@ -36,11 +36,35 @@
                 <h4 class="modal-title" id="myModalLabel">Crear Trabajo</h4>
             </div>
             <div class="modal-body">
-                ...
+                <form id="trabajo_form">
+                    <div class="form-group">
+                        <label for="nombre_alumno">Nombre alumno</label>
+                        <input type="text" name="nombre_alumno" placeholder="Nombre del alumno" id="nombre_alumno"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="nombre_trabajo">Titulo del trabajo</label>
+                        <input type="text" name="nombre_trabajo" placeholder="Titulo del trabajo" id="nombre_trabajo"/>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="paginas_trabajo">Paginas del trabajo</label>
+                        <input type="number" name="paginas_trabajo" placeholder="Paginas del trabajo" id="paginas_trabajo"/>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="fecha">Fecha</label>
+                        <input type="text" name="fecha" placeholder="Fecha" id="fecha"/>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="hora">Hora</label>
+                        <input type="number" name="hora" placeholder="Hora" id="hora"/>
+                    </div>
+                </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-primary" id="trabajo_creator">Save changes</button>
             </div>
         </div>
     </div>

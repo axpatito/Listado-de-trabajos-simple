@@ -4,6 +4,7 @@ from orm import Database
 from flask import Flask, render_template, request, url_for
 import random
 import logging
+import copy
 logger = logging.getLogger('stats_server')
 logging.basicConfig(filename=consts.LOG_FILE, level=logging.DEBUG)
 
@@ -25,14 +26,14 @@ def crear_trabajo():
 def create_db_example():
     nombre_alumnos = ['javier', 'gabriel', 'rodrigo']
     nombre_trabajo = ['quimica', 'fisica', 'matematicas']
-    mi_trabajo = Trabajo(
-        id_alumno=random.randint(200,500),
-        nombre_alumno=random.choice(nombre_alumnos),
-        nombre_trabajo=random.choice(nombre_trabajo),
-        paginas_trabajo=2,
-        fecha='2016-01-01',
-        hora=12,
-    )
+    trabajo_dict = copy.deepcopy(consts.TRABAJO_DICT)
+    trabajo_dict['id_alumno'] = random.randint(200, 500)
+    trabajo_dict['nombre_alumno'] = random.choice(nombre_alumnos)
+    trabajo_dict['nombre_trabajo'] = random.choice(nombre_trabajo)
+    trabajo_dict['paginas_trabajo'] = 2
+    trabajo_dict['fecha'] = '2016-01-01'
+    trabajo_dict['hora'] = 12
+    mi_trabajo = Trabajo(**trabajo_dict)
     try:
         mi_trabajo.save()
         db.commit()
