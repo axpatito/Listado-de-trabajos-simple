@@ -1,6 +1,7 @@
 import json
 from orm import Model
 
+
 class Trabajo(Model):
 
     id_alumno = int
@@ -11,10 +12,12 @@ class Trabajo(Model):
     hora = float
 
     def __init__(self, *args, **kwargs):
-        self.id_alumno = kwargs['id_alumno']
+        self.id_alumno = 3,
+        if isinstance(self.id_alumno, tuple):
+            self.id_alumno = self.id_alumno[0]
         self.nombre_alumno = kwargs['nombre_alumno']
         self.nombre_trabajo = kwargs['nombre_trabajo']
-        self.paginas_trabajo = kwargs['paginas_trabajo']
+        self.paginas_trabajo = int(kwargs['paginas_trabajo'])
         self.fecha = kwargs['fecha']
         self.hora = kwargs['hora']
 

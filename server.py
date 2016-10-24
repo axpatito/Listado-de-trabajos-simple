@@ -5,8 +5,8 @@ from flask import Flask, render_template, request, url_for
 import random
 import logging
 import copy
-logger = logging.getLogger('stats_server')
-logging.basicConfig(filename=consts.LOG_FILE, level=logging.DEBUG)
+# logger = logging.getLogger('stats_server')
+# logging.basicConfig(filename=consts.LOG_FILE, level=logging.DEBUG)
 
 app = Flask(__name__)
 db = Database(consts.DB)
@@ -20,7 +20,15 @@ def index():
 
 @app.route('/api/crear_trabajo', methods=['POST'])
 def crear_trabajo():
-    return None
+    post_values = request.values.to_dict()
+    mi_trabajo = Trabajo(**post_values)
+    try:
+        mi_trabajo.save()
+        db.commit()
+        return 'Ok'
+    except Exception as e:
+        import ipdb; ipdb.set_trace()
+        return e, 500
 
 @app.route('/crea_ejemplo')
 def create_db_example():
@@ -40,6 +48,7 @@ def create_db_example():
         return 'Ok'
     except Exception as e:
         return e
+
 
 if __name__ == '__main__':
     app.run(port=consts.PORT)
